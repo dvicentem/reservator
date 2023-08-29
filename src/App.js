@@ -1,7 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+
+import { auth } from "./firebase/firebase";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 function App() {
+  async function handleLoginClick() {
+    const googleProvider = new GoogleAuthProvider();
+    await signInWithGoogle(googleProvider);
+  }
+  async function signInWithGoogle(googleProvider) {
+    try {
+      const res = await signInWithPopup(auth, googleProvider);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +34,10 @@ function App() {
           Learn React
         </a>
       </header>
+
+      <button id="btn-google-login" onClick={handleLoginClick}>
+        Login con Google
+      </button>
     </div>
   );
 }
