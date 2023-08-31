@@ -1,13 +1,11 @@
 import "materialize-css/dist/css/materialize.min.css";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
 import Reservation from "./components/Reservation";
+import UserNav from "./components/UserNav";
 
 function App() {
   return (
     <div className="App">
-      <Login />
-      <Logout />
+      <UserNav />
       <Reservation />
     </div>
   );
