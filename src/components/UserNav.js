@@ -4,7 +4,7 @@ import Login from "./Login";
 import Logout from "./Logout";
 import { onAuthStateChanged } from "firebase/auth";
 
-const User = () => {
+const User = ({ gToken, setGToken }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const User = () => {
     return (
       <Fragment>
         <h3>You are not logged in</h3>
-        <Login />
+        <Login gToken={gToken} setGToken={setGToken} />
       </Fragment>
     );
   }
@@ -26,7 +26,7 @@ const User = () => {
   return (
     <Fragment>
       <h3>You are logged in as {user.displayName}</h3>
-      <Logout />
+      <Logout gToken={gToken} setGToken={setGToken} />
     </Fragment>
   );
 };
