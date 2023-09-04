@@ -1,15 +1,15 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";
-import {
+import { initializeApp } from 'firebase/app'
+/* import { getAnalytics } from 'firebase/analytics' */
+import { getAuth } from 'firebase/auth'
+/* import {
   getStorage,
   ref,
   uploadBytes,
   getDownloadURL,
-  getBytes,
-} from "firebase/storage";
-import {
+  getBytes
+} from 'firebase/storage' */
+/* import {
   getFirestore,
   collection,
   addDoc,
@@ -19,8 +19,8 @@ import {
   query,
   where,
   setDoc,
-  deleteDoc,
-} from "firebase/firestore";
+  deleteDoc
+} from 'firebase/firestore' */
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -33,12 +33,12 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_STORAGEBUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERIDE,
   appId: process.env.REACT_APP_APPID,
-  measurementId: process.env.REACT_APP_MEASUREMENTID,
-};
+  measurementId: process.env.REACT_APP_MEASUREMENTID
+}
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-export const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+const app = initializeApp(firebaseConfig)
+/* const analytics = getAnalytics(app) */
+export const auth = getAuth(app)
+/* const db = getFirestore(app)
+const storage = getStorage(app) */

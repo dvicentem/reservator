@@ -1,83 +1,84 @@
-import React, { useEffect, Fragment } from "react";
-import M from "materialize-css";
-import { auth } from "../firebase/firebase";
+import React, { useEffect, Fragment } from 'react'
+import M from 'materialize-css'
+// import material-right from  'material-icons'
+// import { auth } from '../firebase/firebase'
+import { saveCalendarEvent } from '../utils/saveEvent'
 
-const Reservation = () => {
+const CreateEvent = () => {
   useEffect(() => {
-    var elemsDatepicker = document.querySelectorAll(".datepicker");
-    var optionsDatepicker = {
+    const elemsDatepicker = document.querySelectorAll('.datepicker')
+    const optionsDatepicker = {
       autoClose: true,
       showClearBtn: true,
-      format: "yyyy-mm-dd",
+      format: 'yyyy-mm-dd',
       i18n: {
-        cancel: "Cancelar",
-        clear: "Borrar",
-        done: "Ok",
+        cancel: 'Cancelar',
+        clear: 'Borrar',
+        done: 'Ok',
         months: [
-          "Enero",
-          "Febrero",
-          "Marzo",
-          "Abril",
-          "Mayo",
-          "Junio",
-          "Julio",
-          "Agosto",
-          "Septiembre",
-          "Octubre",
-          "Noviembre",
-          "Diciembre",
+          'Enero',
+          'Febrero',
+          'Marzo',
+          'Abril',
+          'Mayo',
+          'Junio',
+          'Julio',
+          'Agosto',
+          'Septiembre',
+          'Octubre',
+          'Noviembre',
+          'Diciembre'
         ],
         monthsShort: [
-          "Ene",
-          "Feb",
-          "Mar",
-          "Abr",
-          "May",
-          "Jun",
-          "Jul",
-          "Ago",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dic",
+          'Ene',
+          'Feb',
+          'Mar',
+          'Abr',
+          'May',
+          'Jun',
+          'Jul',
+          'Ago',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dic'
         ],
         weekdays: [
-          "Domingo",
-          "Lunes",
-          "Martes",
-          "Miércoles",
-          "Jueves",
-          "Viernes",
-          "Sábado",
+          'Domingo',
+          'Lunes',
+          'Martes',
+          'Miércoles',
+          'Jueves',
+          'Viernes',
+          'Sábado'
         ],
-        weekdaysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-        weekdaysAbbrev: ["D", "L", "M", "M", "J", "V", "S"],
+        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+        weekdaysAbbrev: ['D', 'L', 'M', 'M', 'J', 'V', 'S']
       },
-      firstDay: 1,
-    };
-    var instanceDatepicker = M.Datepicker.init(
-      elemsDatepicker,
-      optionsDatepicker
-    );
+      firstDay: 1
+    }
+    M.Datepicker.init(elemsDatepicker, optionsDatepicker)
 
-    var elemsTimepicker = document.querySelectorAll(".timepicker");
-    var optionsTimepicker = {
+    const elemsTimepicker = document.querySelectorAll('.timepicker')
+    const optionsTimepicker = {
       twelveHour: false,
-      autoClose: true,
-    };
-    var instancesTimepicker = M.Timepicker.init(
-      elemsTimepicker,
-      optionsTimepicker
-    );
+      autoClose: true
+    }
+    M.Timepicker.init(elemsTimepicker, optionsTimepicker)
 
-    var elems4 = document.querySelectorAll("select");
-    var instances4 = M.FormSelect.init(elems4);
-  }, []);
+    const elemsSelect = document.querySelectorAll('select')
+    M.FormSelect.init(elemsSelect)
+  }, [])
 
+  const createCalendarEvent = (event) => {
+    event.preventDefault()
+    // ToDo: Validate calendar event
+    saveCalendarEvent('hola mundo')
+  }
   return (
     <Fragment>
       <div className="container">
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={createCalendarEvent}>
           <div className="row">
             <div className="input-field col s4">
               <input id="startdate" type="text" className="datepicker" />
@@ -162,11 +163,21 @@ const Reservation = () => {
                 Invitados
               </label>
             </div>
-          </div>{" "}
+          </div>{' '}
+          <div className="row ">
+            <button
+              className="btn waves-effect waves-light "
+              type="submit"
+              name="action"
+            >
+              Crear reserva
+              <i className="material-icons event">event</i>
+            </button>
+          </div>
         </form>
       </div>
     </Fragment>
-  );
-};
+  )
+}
 
-export default Reservation;
+export default CreateEvent
