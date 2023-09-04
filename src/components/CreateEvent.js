@@ -2,7 +2,7 @@ import React, { useEffect, Fragment } from 'react'
 import M from 'materialize-css'
 // import material-right from  'material-icons'
 // import { auth } from '../firebase/firebase'
-import { saveCalendarEvent } from '../utils/saveEvent'
+import { useGoogleApi } from 'react-gapi'
 
 const CreateEvent = () => {
   useEffect(() => {
@@ -69,12 +69,45 @@ const CreateEvent = () => {
     const elemsSelect = document.querySelectorAll('select')
     M.FormSelect.init(elemsSelect)
   }, [])
-
-  const createCalendarEvent = (event) => {
-    event.preventDefault()
-    // ToDo: Validate calendar event
-    saveCalendarEvent('hola mundo')
+  const mockEvent = {
+    summary: 'Sample Event',
+    location: 'Sample Location',
+    description:
+      'This is a sample event created with React and Google Calendar API.',
+    start: {
+      dateTime: '2023-09-05T10:00:00',
+      timeZone: 'Your Time Zone'
+    },
+    end: {
+      dateTime: '2023-09-05T12:00:00',
+      timeZone: 'Your Time Zone'
+    }
   }
+  const gapi = useGoogleApi({
+    discoveryDocs: [
+      'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
+    ],
+    scopes: ['https://www.googleapis.com/auth/calendar.events']
+  })
+  const calendar = gapi.calendar('v3')
+  const accessToken = JSON.parse(localStorage.getItem('gToken'))
+
+  const createCalendarEvent = async (event) => {
+    event.preventDefault()
+    try {
+      const event = mockEvent
+      const response = await calendar.events.insert({
+        auth: accessToken,
+        calendarId: 'primary',
+        resource: event
+      })
+      console.log(response)
+      console.log('Event created:', response.data)
+    } catch (error) {
+      console.error('Error creating event:', error)
+    }
+  }
+
   return (
     <Fragment>
       <div className="container">
