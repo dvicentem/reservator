@@ -1,112 +1,74 @@
-import React, { useEffect, Fragment } from 'react'
-import M from 'materialize-css'
-// import material-right from  'material-icons'
-// import { auth } from '../firebase/firebase'
-import { useGoogleApi } from 'react-gapi'
+import React, { useEffect, Fragment } from "react";
+import M from "materialize-css";
 
 const CreateEvent = () => {
+  const createCalendarEvent = () => {
+    return true;
+  };
   useEffect(() => {
-    const elemsDatepicker = document.querySelectorAll('.datepicker')
+    const elemsDatepicker = document.querySelectorAll(".datepicker");
     const optionsDatepicker = {
       autoClose: true,
       showClearBtn: true,
-      format: 'yyyy-mm-dd',
+      format: "yyyy-mm-dd",
       i18n: {
-        cancel: 'Cancelar',
-        clear: 'Borrar',
-        done: 'Ok',
+        cancel: "Cancelar",
+        clear: "Borrar",
+        done: "Ok",
         months: [
-          'Enero',
-          'Febrero',
-          'Marzo',
-          'Abril',
-          'Mayo',
-          'Junio',
-          'Julio',
-          'Agosto',
-          'Septiembre',
-          'Octubre',
-          'Noviembre',
-          'Diciembre'
+          "Enero",
+          "Febrero",
+          "Marzo",
+          "Abril",
+          "Mayo",
+          "Junio",
+          "Julio",
+          "Agosto",
+          "Septiembre",
+          "Octubre",
+          "Noviembre",
+          "Diciembre",
         ],
         monthsShort: [
-          'Ene',
-          'Feb',
-          'Mar',
-          'Abr',
-          'May',
-          'Jun',
-          'Jul',
-          'Ago',
-          'Sep',
-          'Oct',
-          'Nov',
-          'Dic'
+          "Ene",
+          "Feb",
+          "Mar",
+          "Abr",
+          "May",
+          "Jun",
+          "Jul",
+          "Ago",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dic",
         ],
         weekdays: [
-          'Domingo',
-          'Lunes',
-          'Martes',
-          'Miércoles',
-          'Jueves',
-          'Viernes',
-          'Sábado'
+          "Domingo",
+          "Lunes",
+          "Martes",
+          "Miércoles",
+          "Jueves",
+          "Viernes",
+          "Sábado",
         ],
-        weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
-        weekdaysAbbrev: ['D', 'L', 'M', 'M', 'J', 'V', 'S']
+        weekdaysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+        weekdaysAbbrev: ["D", "L", "M", "M", "J", "V", "S"],
       },
-      firstDay: 1
-    }
-    M.Datepicker.init(elemsDatepicker, optionsDatepicker)
+      firstDay: 1,
+    };
+    M.Datepicker.init(elemsDatepicker, optionsDatepicker);
 
-    const elemsTimepicker = document.querySelectorAll('.timepicker')
+    const elemsTimepicker = document.querySelectorAll(".timepicker");
     const optionsTimepicker = {
       twelveHour: false,
-      autoClose: true
-    }
-    M.Timepicker.init(elemsTimepicker, optionsTimepicker)
+      autoClose: true,
+    };
+    M.Timepicker.init(elemsTimepicker, optionsTimepicker);
 
-    const elemsSelect = document.querySelectorAll('select')
-    M.FormSelect.init(elemsSelect)
-  }, [])
-  const mockEvent = {
-    summary: 'Sample Event',
-    location: 'Sample Location',
-    description:
-      'This is a sample event created with React and Google Calendar API.',
-    start: {
-      dateTime: '2023-09-05T10:00:00',
-      timeZone: 'Your Time Zone'
-    },
-    end: {
-      dateTime: '2023-09-05T12:00:00',
-      timeZone: 'Your Time Zone'
-    }
-  }
-  const gapi = useGoogleApi({
-    discoveryDocs: [
-      'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
-    ],
-    scopes: ['https://www.googleapis.com/auth/calendar.events']
-  })
-  const calendar = gapi.calendar('v3')
-  const accessToken = JSON.parse(localStorage.getItem('gToken'))
-
-  const createCalendarEvent = async (event) => {
-    event.preventDefault()
-    try {
-      const event = mockEvent
-      const response = await calendar.events.insert({
-        auth: accessToken,
-        calendarId: 'primary',
-        resource: event
-      })
-      console.log(response)
-      console.log('Event created:', response.data)
-    } catch (error) {
-      console.error('Error creating event:', error)
-    }
-  }
+    const elemsSelect = document.querySelectorAll("select");
+    M.FormSelect.init(elemsSelect);
+  }, []);
 
   return (
     <Fragment>
@@ -196,7 +158,7 @@ const CreateEvent = () => {
                 Invitados
               </label>
             </div>
-          </div>{' '}
+          </div>{" "}
           <div className="row ">
             <button
               className="btn waves-effect waves-light "
@@ -210,7 +172,7 @@ const CreateEvent = () => {
         </form>
       </div>
     </Fragment>
-  )
-}
+  );
+};
 
-export default CreateEvent
+export default CreateEvent;

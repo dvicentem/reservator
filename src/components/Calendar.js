@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { auth } from '../firebase/firebase'
-import { google } from 'googleapis'
+import React, { useEffect, useState } from "react";
+import { auth } from "../firebase/firebase";
+import { google } from "googleapis";
 
-const oAuth2Client = new google.auth.OAuth2()
+const oAuth2Client = new google.auth.OAuth2();
 // TODO: Recuperar el token
-oAuth2Client.setCredentials({ access_token: 'Token received from firebase' })
-google.options({ auth: oAuth2Client })
+oAuth2Client.setCredentials({ access_token: "Token received from firebase" });
+google.options({ auth: oAuth2Client });
 
 const Calendar = () => {
-  const [events, setEvents] = useState([])
+  const [events, setEvents] = useState([]);
 
-  const calendarID = process.env.REACT_APP_GOBLIN_CALENDAR_ID
+  const calendarID = process.env.REACT_APP_GOBLIN_CALENDAR_ID;
+  const apiKey = process.env.REACT_APP_APIKEY;
 
-  async function getEvents (calendarID, auth) {}
+  async function getEvents(calendarID, auth) {}
 
   useEffect(() => {
-    const events = getEvents(calendarID, apiKey)
-    setEvents(events)
-  }, [])
+    const events = getEvents(calendarID, apiKey);
+    setEvents(events);
+  }, []);
 
   return (
     <div className="App py-8 flex flex-col justify-center">
@@ -32,10 +33,10 @@ const Calendar = () => {
         </ul>
       </h1>
     </div>
-  )
-}
+  );
+};
 
-export default Calendar
+export default Calendar;
 
 /*
 const Calendar = () => {
