@@ -1,5 +1,6 @@
 import { useForm, Controller } from 'react-hook-form'
 import dayjs from 'dayjs'
+import 'dayjs/locale/es'
 
 import {
   Button,
@@ -19,17 +20,20 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 
 import openCalendarLink from '../services/gcal/eventlink'
 
-const defaultValues = {
-  startDateTime: dayjs(new Date()),
-  duration: 2,
-  room: '',
-  type: '',
-  game: '',
-  host: '',
-  goblins: 2,
-  guests: 0
-}
+dayjs.locale('es')
+
 export const ReservationForm = () => {
+  const defaultValues = {
+    startDateTime: dayjs(new Date()),
+    duration: 2,
+    room: '',
+    type: '',
+    game: '',
+    host: '',
+    goblins: 2,
+    guests: 0
+  }
+
   const {
     register,
     control,
@@ -52,7 +56,7 @@ export const ReservationForm = () => {
         margin: '10px 10px'
       }}
     >
-      <form autoComplete='false' onSubmit={handleSubmit(onSubmit)}>
+      <form autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
         <LocalizationProvider
           localeText={
             esES.components.MuiLocalizationProvider.defaultProps.localeText
