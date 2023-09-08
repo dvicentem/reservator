@@ -1,5 +1,5 @@
-import React, { useState, Fragment } from "react";
-import { auth } from "../firebase/firebase";
+import React, { useState, Fragment } from 'react'
+import { auth } from '../firebase/firebase'
 
 const Logout = () => {
   return (
@@ -8,7 +8,7 @@ const Logout = () => {
         Logout app
       </button>
     </Fragment>
-  );
-};
+  )
+}
 
-export default Logout;
+export default Logout

@@ -1,17 +1,17 @@
-import React, { useState, Fragment } from "react";
-import { auth } from "../firebase/firebase";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import React, { useState, Fragment } from 'react'
+import { auth } from '../firebase/firebase'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 
 const Login = () => {
-  async function handleLoginClick() {
-    const googleProvider = new GoogleAuthProvider();
-    await signInWithGoogle(googleProvider);
+  async function handleLoginClick () {
+    const googleProvider = new GoogleAuthProvider()
+    await signInWithGoogle(googleProvider)
   }
-  async function signInWithGoogle(googleProvider) {
+  async function signInWithGoogle (googleProvider) {
     try {
-      const res = await signInWithPopup(auth, googleProvider);
+      const res = await signInWithPopup(auth, googleProvider)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
@@ -21,7 +21,7 @@ const Login = () => {
         Login con Google
       </button>
     </Fragment>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
