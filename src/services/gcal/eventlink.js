@@ -29,10 +29,11 @@ const calendarLink = (data) => {
 
   TEXT = TEXT.replace(/ /g, '+')
 
-  const startDateTime = dayjs(data.startDateTime)
-    .utc(true)
+  const startDateTime = dayjs
+    .utc(data.startDateTime)
     .format('YYYYMMDDTHHmmss[Z]')
-  const endDateTime = dayjs(data.startDateTime)
+  const endDateTime = dayjs
+    .utc(data.startDateTime)
     .add(data.duration, 'hours')
     .utc(true)
     .format('YYYYMMDDTHHmmss[Z]')
@@ -67,7 +68,6 @@ const calendarLink = (data) => {
 
 const openCalendarLink = (data) => {
   const link = calendarLink(data)
-  console.log(link)
   window.open(link, '_blank', 'noreferrer')
 }
 
