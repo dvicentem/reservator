@@ -88,25 +88,37 @@ export const ReservationForm = () => {
               )
             }}
           />
-          <FormControl required>
-            <InputLabel id='select-room-label'>Sala</InputLabel>
-            <Select {...register('room')} label='Sala'>
-              <MenuItem value={'SP'}>Pecera</MenuItem>
-              <MenuItem value={'S1'}>Sala 1</MenuItem>
-              <MenuItem value={'S2'}>Sala 2</MenuItem>
-              <MenuItem value={'S3'}>Sala 3</MenuItem>
-              <MenuItem value={'S4'}>Sala 4</MenuItem>
-            </Select>{' '}
-          </FormControl>
-          <FormControl required>
-            <InputLabel id='select-type-label'>Tipo de Juego</InputLabel>
-            <Select {...register('type')} label='Tipo de Juego'>
-              <MenuItem value={'JdR'}>Rol</MenuItem>
-              <MenuItem value={'JdT'}>Tablero</MenuItem>
-              <MenuItem value={'JdM'}>Minis</MenuItem>
-              <MenuItem value={'Otro'}>Otro</MenuItem>
-            </Select>{' '}
-          </FormControl>
+          <Controller
+            name='room'
+            control={control}
+            render={({ field }) => (
+              <FormControl required>
+                <InputLabel id='select-room-label'>Sala</InputLabel>
+                <Select {...field} label='Sala'>
+                  <MenuItem value={'SP'}>Pecera</MenuItem>
+                  <MenuItem value={'S1'}>Sala 1</MenuItem>
+                  <MenuItem value={'S2'}>Sala 2</MenuItem>
+                  <MenuItem value={'S3'}>Sala 3</MenuItem>
+                  <MenuItem value={'S4'}>Sala 4</MenuItem>
+                </Select>{' '}
+              </FormControl>
+            )}
+          />
+          <Controller
+            name='type'
+            control={control}
+            render={({ field }) => (
+              <FormControl required>
+                <InputLabel id='select-type-label'>Tipo de Juego</InputLabel>
+                <Select {...field} label='Tipo de Juego'>
+                  <MenuItem value={'JdR'}>Rol</MenuItem>
+                  <MenuItem value={'JdT'}>Tablero</MenuItem>
+                  <MenuItem value={'JdM'}>Minis</MenuItem>
+                  <MenuItem value={'Otro'}>Otro</MenuItem>
+                </Select>{' '}
+              </FormControl>
+            )}
+          />
           <TextField
             {...register('game')}
             label={'Juego/Actividad'}
