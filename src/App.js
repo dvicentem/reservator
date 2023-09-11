@@ -1,4 +1,3 @@
-import 'materialize-css/dist/css/materialize.min.css'
 import UserNav from './components/UserNav'
 import { ReservationForm } from './components/ReservationForm'
 
