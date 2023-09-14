@@ -46,7 +46,7 @@ export const ReservationForm = () => {
   return (
     <form autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={1}>
-        <Grid item xs={5}>
+        <Grid item xs={8} sm={5}>
           <Controller
             name='startDateTime'
             control={control}
@@ -56,12 +56,12 @@ export const ReservationForm = () => {
                 required
                 defaultValue={dayjs(new Date())}
                 label='Fecha y hora de inicio'
-                sx={{ width: 1, minWidth: '20ch' }}
+                sx={{ width: 1 }}
               />
             )}
           />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4} sm={3}>
           <Controller
             name='duration'
             control={control}
@@ -81,7 +81,7 @@ export const ReservationForm = () => {
             )}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6} sm={4}>
           <Controller
             name='room'
             control={control}
@@ -101,7 +101,7 @@ export const ReservationForm = () => {
             )}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6} sm={4}>
           <Controller
             name='type'
             control={control}
@@ -120,7 +120,7 @@ export const ReservationForm = () => {
             )}
           />{' '}
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12} sm={8}>
           <TextField
             {...register('game')}
             label={'Juego/Actividad'}
