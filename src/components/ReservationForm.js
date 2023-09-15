@@ -7,11 +7,12 @@ import {
   InputAdornment,
   InputLabel,
   TextField,
-  // Grid,
   MenuItem,
   FormControl,
-  Select
+  Select,
+  Grid
 } from '@mui/material'
+import { CalendarIcon } from '@mui/x-date-pickers'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 
 import openCalendarLink from '../services/gcal/eventlink'
@@ -34,138 +35,150 @@ export const ReservationForm = () => {
     register,
     control,
     handleSubmit,
-    watch,
     formState: { errors }
   } = useForm({ defaultValues })
 
   const onSubmit = (data) => {
-    console.log(data)
     openCalendarLink(data)
   }
 
   return (
     <form autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name='startDateTime'
-        control={control}
-        render={({ field }) => (
-          <DateTimePicker
-            {...field}
-            required
-            defaultValue={dayjs(new Date())}
-            label='Fecha y hora de inicio'
-            sx={{ m: 1, width: '24ch' }}
+      <Grid container spacing={1} sx={{ mt: 2 }}>
+        <Grid item xs={8} sm={5}>
+          <Controller
+            name='startDateTime'
+            control={control}
+            render={({ field }) => (
+              <DateTimePicker
+                {...field}
+                required
+                defaultValue={dayjs(new Date())}
+                label='Fecha y hora de inicio'
+                sx={{ width: 1 }}
+              />
+            )}
           />
-        )}
-      />
-
-      <Controller
-        name='duration'
-        control={control}
-        render={({ field }) => (
+        </Grid>
+        <Grid item xs={4} sm={3}>
+          <Controller
+            name='duration'
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                required
+                label={'Duración'}
+                type='number'
+                sx={{ width: 1, minWidth: '8ch' }}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position='end'>Horas</InputAdornment>
+                  )
+                }}
+              />
+            )}
+          />
+        </Grid>
+        <Grid item xs={6} sm={4}>
+          <Controller
+            name='room'
+            control={control}
+            render={({ field }) => (
+              <FormControl required sx={{ width: 1 }}>
+                <InputLabel id='select-room-label' shrink>
+                  Sala
+                </InputLabel>
+                <Select {...field} label='Sala'>
+                  <MenuItem value={'SP'}>Pecera</MenuItem>
+                  <MenuItem value={'S1'}>Sala 1</MenuItem>
+                  <MenuItem value={'S2'}>Sala 2</MenuItem>
+                  <MenuItem value={'S3'}>Sala 3</MenuItem>
+                  <MenuItem value={'S4'}>Sala 4</MenuItem>
+                </Select>
+              </FormControl>
+            )}
+          />
+        </Grid>
+        <Grid item xs={6} sm={4}>
+          <Controller
+            name='type'
+            control={control}
+            render={({ field }) => (
+              <FormControl required sx={{ width: 1 }}>
+                <InputLabel id='select-type-label' shrink>
+                  Tipo de Juego
+                </InputLabel>
+                <Select {...field} label='Tipo de Juego'>
+                  <MenuItem value={'JdR'}>Rol</MenuItem>
+                  <MenuItem value={'JdT'}>Tablero</MenuItem>
+                  <MenuItem value={'JdM'}>Minis</MenuItem>
+                  <MenuItem value={'Otro'}>Otro</MenuItem>
+                </Select>{' '}
+              </FormControl>
+            )}
+          />{' '}
+        </Grid>
+        <Grid item xs={12} sm={8}>
           <TextField
-            {...field}
+            {...register('game')}
+            label={'Juego/Actividad'}
+            type='text'
             required
-            label={'Duración'}
-            type='number'
-            sx={{ m: 1, width: '14ch' }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position='end'>Horas</InputAdornment>
-              )
+            sx={{ width: 1 }}
+            InputLabelProps={{
+              shrink: true
             }}
-          />
-        )}
-      />
-
-      <Controller
-        name='room'
-        control={control}
-        render={({ field }) => (
-          <FormControl required sx={{ m: 1, width: '16ch' }}>
-            <InputLabel id='select-room-label' shrink>
-              Sala
-            </InputLabel>
-            <Select {...field} label='Sala'>
-              <MenuItem value={'SP'}>Pecera</MenuItem>
-              <MenuItem value={'S1'}>Sala 1</MenuItem>
-              <MenuItem value={'S2'}>Sala 2</MenuItem>
-              <MenuItem value={'S3'}>Sala 3</MenuItem>
-              <MenuItem value={'S4'}>Sala 4</MenuItem>
-            </Select>
-          </FormControl>
-        )}
-      />
-
-      <Controller
-        name='type'
-        control={control}
-        render={({ field }) => (
-          <FormControl required sx={{ m: 1, width: '18ch' }}>
-            <InputLabel id='select-type-label' shrink>
-              Tipo de Juego
-            </InputLabel>
-            <Select {...field} label='Tipo de Juego'>
-              <MenuItem value={'JdR'}>Rol</MenuItem>
-              <MenuItem value={'JdT'}>Tablero</MenuItem>
-              <MenuItem value={'JdM'}>Minis</MenuItem>
-              <MenuItem value={'Otro'}>Otro</MenuItem>
-            </Select>{' '}
-          </FormControl>
-        )}
-      />
-
-      <TextField
-        {...register('game')}
-        label={'Juego/Actividad'}
-        type='text'
-        required
-        sx={{ m: 1, width: '42ch' }}
-        InputLabelProps={{
-          shrink: true
-        }}
-      />
-
-      <TextField
-        {...register('host')}
-        label={'Organizador'}
-        type='text'
-        required
-        sx={{ m: 1, width: '14ch' }}
-        InputLabelProps={{
-          shrink: true
-        }}
-      />
-      <TextField
-        {...register('goblins')}
-        label={'Goblins'}
-        type='number'
-        required
-        sx={{ m: 1, width: '10ch' }}
-        InputLabelProps={{
-          shrink: true
-        }}
-      />
-
-      <TextField
-        {...register('guests')}
-        label={'Invitados'}
-        type='number'
-        required
-        sx={{ m: 1, width: '12ch' }}
-        InputLabelProps={{
-          shrink: true
-        }}
-      />
-
-      <Button
-        variant='contained'
-        type='submit'
-        size='medium'
-        sx={{ m: 1, width: '99%' }}
-      >
-        Link
-      </Button>
+          />{' '}
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            {...register('host')}
+            label={'Organizador'}
+            type='text'
+            required
+            sx={{ width: 1 }}
+            InputLabelProps={{
+              shrink: true
+            }}
+          />{' '}
+        </Grid>{' '}
+        <Grid item xs={3}>
+          <TextField
+            {...register('goblins')}
+            label={'Goblins'}
+            type='number'
+            required
+            sx={{ width: 1 }}
+            InputLabelProps={{
+              shrink: true
+            }}
+          />{' '}
+        </Grid>
+        <Grid item xs={3}>
+          <TextField
+            {...register('guests')}
+            label={'Invitados'}
+            type='number'
+            required
+            sx={{ width: 1 }}
+            InputLabelProps={{
+              shrink: true
+            }}
+          />{' '}
+        </Grid>
+        <Grid item xs={12}>
+          <Button
+            variant='contained'
+            type='submit'
+            size='medium'
+            sx={{ width: 1, mt: 1 }}
+            endIcon={<CalendarIcon />}
+          >
+            Añadir al calendario
+          </Button>
+        </Grid>
+      </Grid>
     </form>
   )
 }
