@@ -12,12 +12,12 @@ import {
   Select,
   Grid
 } from '@mui/material'
+import { CalendarIcon } from '@mui/x-date-pickers'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 
 import openCalendarLink from '../services/gcal/eventlink'
 
 dayjs.locale('es')
-console.log('locale: ', es.name)
 
 export const ReservationForm = () => {
   const defaultValues = {
@@ -39,13 +39,12 @@ export const ReservationForm = () => {
   } = useForm({ defaultValues })
 
   const onSubmit = (data) => {
-    console.log(data)
     openCalendarLink(data)
   }
 
   return (
     <form autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
-      <Grid container spacing={1}>
+      <Grid container spacing={1} sx={{ mt: 2 }}>
         <Grid item xs={8} sm={5}>
           <Controller
             name='startDateTime'
@@ -173,10 +172,11 @@ export const ReservationForm = () => {
             variant='contained'
             type='submit'
             size='medium'
-            sx={{ width: 1 }}
+            sx={{ width: 1, mt: 1 }}
+            endIcon={<CalendarIcon />}
           >
-            Link
-          </Button>{' '}
+            Añadir al calendario
+          </Button>
         </Grid>
       </Grid>
     </form>

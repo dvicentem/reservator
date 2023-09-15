@@ -1,20 +1,18 @@
-import { Container, CssBaseline } from '@mui/material'
+import { Container, ThemeProvider } from '@mui/material'
 import { ReservationForm } from './components/ReservationForm'
-import { Fragment } from 'react'
 import ResponsiveAppBar from './components/responsive-app-bar'
+import theme from './theme-config'
 
 const App = () => {
   return (
-    <Fragment>
-      <CssBaseline />
+    <ThemeProvider theme={theme}>
       <Container maxWidth='lg'>
         <div className='App'>
           <ResponsiveAppBar />
-          <p />
           <ReservationForm />
         </div>
       </Container>
-    </Fragment>
+    </ThemeProvider>
   )
 }
 
