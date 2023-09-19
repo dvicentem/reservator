@@ -1,4 +1,3 @@
-import { sampleData } from './res'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 
@@ -71,4 +70,9 @@ const openCalendarLink = (data) => {
   window.open(link, '_blank', 'noreferrer')
 }
 
-export default openCalendarLink
+const getFormAction = (data) => {
+  console.log('aqui')
+  return openCalendarLink(data)
+}
+
+export default getFormAction

@@ -15,7 +15,7 @@ import {
 import { CalendarIcon } from '@mui/x-date-pickers'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 
-import openCalendarLink from '../services/gcal/eventlink'
+import getFormAction from '../services/gcal/actions'
 
 dayjs.locale('es')
 
@@ -38,8 +38,9 @@ export const ReservationForm = () => {
     formState: { errors }
   } = useForm({ defaultValues })
 
+  const formAction = getFormAction
   const onSubmit = (data) => {
-    openCalendarLink(data)
+    formAction(data)
   }
 
   return (
