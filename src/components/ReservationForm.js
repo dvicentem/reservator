@@ -115,10 +115,10 @@ export const ReservationForm = () => {
                   <MenuItem value={'JdT'}>Tablero</MenuItem>
                   <MenuItem value={'JdM'}>Minis</MenuItem>
                   <MenuItem value={'Otro'}>Otro</MenuItem>
-                </Select>{' '}
+                </Select>
               </FormControl>
             )}
-          />{' '}
+          />
         </Grid>
         <Grid item xs={12} sm={8}>
           <TextField
@@ -130,7 +130,7 @@ export const ReservationForm = () => {
             InputLabelProps={{
               shrink: true
             }}
-          />{' '}
+          />
         </Grid>
         <Grid item xs={6}>
           <TextField
@@ -142,8 +142,8 @@ export const ReservationForm = () => {
             InputLabelProps={{
               shrink: true
             }}
-          />{' '}
-        </Grid>{' '}
+          />
+        </Grid>
         <Grid item xs={3}>
           <TextField
             {...register('goblins')}
@@ -154,7 +154,7 @@ export const ReservationForm = () => {
             InputLabelProps={{
               shrink: true
             }}
-          />{' '}
+          />
         </Grid>
         <Grid item xs={3}>
           <TextField
@@ -166,7 +166,7 @@ export const ReservationForm = () => {
             InputLabelProps={{
               shrink: true
             }}
-          />{' '}
+          />
         </Grid>
         <Grid item xs={12}>
           <Button

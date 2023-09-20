@@ -71,7 +71,6 @@ const openCalendarLink = (data) => {
 }
 
 const getFormAction = (data) => {
-  console.log('aqui')
   return openCalendarLink(data)
 }
 

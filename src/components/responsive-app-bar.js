@@ -88,7 +88,8 @@ const ResponsiveAppBar = () => {
             sx={{
               flexGrow: 1,
               maxWidth: '200px',
-              display: { xs: 'flex', md: 'none' }
+              display: { xs: 'flex', md: 'none' },
+              mr: 1
             }}
             component='img'
             alt='goblinera-logo'
